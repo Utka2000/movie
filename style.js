@@ -14,11 +14,13 @@ async function fetchData() {
   data.results.map((item) => {
     const row = document.createElement("div");
     const rowContent = `
-              <div class='movie' data-id=item.id>
+              <div class="movie-list" id="movie-list">
+              <div class='movie'  data-id=item.id>
               <img src=https://image.tmdb.org/t/p/w500/${item.poster_path} />
-              <small>2018 - Horror/Thriller</small>
+              <small>${item.release_date}- Horror/Thriller</small>
               <h4>${item.title}</h4>
               <span>${item.vote_average}</span>
+              </div>
               </div>
             `;
     row.innerHTML = rowContent;
@@ -27,18 +29,21 @@ async function fetchData() {
 }
 fetchData();
 
-const searchFun = () => {
-  let filter = document.getElementById("movieId").value;
-  let myTable = document.getElementsByTagName("tr");
-  for (var i = 0; i < myTable.length; i++) {
-    let td = myTable[i].getElementsByTagName("td")[0];
-    if (td) {
-      let textvalue = td.textContent || td.innerHTML;
-      if (textvalue.toUpperCase().indexOf(filter) > -1) {
-        myTable[i].style.display = "";
-      } else {
-        myTable[i].style.display = "none";
-      }
+const search = () => {
+  const searchbox=document.getElementById("search-item").value.toUpperCase();
+  const storeitems=document.getElementById("movie-list")
+  const movie=document.querySelectorAll(".movie")
+  const pname=storeitems.getElementsByTagName("h4")
+  for (var i=0;i<pname.length;i++)
+  {
+  let match=movie[i].getElementsByTagName("h4")[0]
+  if (match){
+    let textvalue= match.textContent||match.innerHTML
+    if (textvalue.toUpperCase().indexOf(searchbox)>-1){
+      movie[i].style.display="";
+    }else{
+      movie[i].style.display="none";
     }
+  }
   }
 };
