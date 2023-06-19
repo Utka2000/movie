@@ -31,12 +31,12 @@ fetchData();
 
 const search = () => {
   const searchbox=document.getElementById("search-item").value.toUpperCase();
-  const storeitems=document.getElementById("movie-list")
+  const storeitems=document.getElementById("movieResult")
   const movie=document.querySelectorAll(".movie")
   const pname=storeitems.getElementsByTagName("h4")
   for (var i=0;i<pname.length;i++)
   {
-  let match=movie[i].getElementsByTagName("h4")[0]
+  let match=movie[i].getElementsByTagName("h4")[0];
   if (match){
     let textvalue= match.textContent||match.innerHTML
     if (textvalue.toUpperCase().indexOf(searchbox)>-1){
